@@ -1,0 +1,4 @@
+- [ ] Fix incomplete closing tag in src/app/components/datatable.tsx
+- [ ] Replace 'any' types with 'unknown' in src/app/utils/csvUtils.ts
+- [ ] Run lint to verify no errors
+- [ ] Run dev server to ensure code is runnable
