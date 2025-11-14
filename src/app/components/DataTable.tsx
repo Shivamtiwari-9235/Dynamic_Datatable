@@ -45,12 +45,19 @@ export default function DataTable() {
   const [page, setPage] = useState(0);
   const rowsPerPage = 10;
 
-  const [visibleColumns, setVisibleColumns] = useState<string[]>(
-    () => JSON.parse(localStorage.getItem("columnPrefs") || "null") || defaultColumns
-  );
-  React.useEffect(() => {
-    localStorage.setItem("columnPrefs", JSON.stringify(visibleColumns));
-  }, [visibleColumns]);
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(defaultColumns);
+
+React.useEffect(() => {
+  const saved = localStorage.getItem("columnPrefs");
+  if (saved) {
+    setVisibleColumns(JSON.parse(saved));
+  }
+}, []);
+
+React.useEffect(() => {
+  localStorage.setItem("columnPrefs", JSON.stringify(visibleColumns));
+}, [visibleColumns]);
+
   const [openModal, setOpenModal] = useState(false);
 
   const handleImportCSV = (e: React.ChangeEvent<HTMLInputElement>) => {
